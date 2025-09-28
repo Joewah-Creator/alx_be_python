@@ -1,25 +1,24 @@
 # perform a basic arithmetic functions 
 
-from typing import Union
+# arithmetic_operations.py
 
-def perform_operation(num1: float, num2: float, operation: str) -> Union[float, str]:
-    if not isinstance(operation, str):
-        return "Error: Invalid operation. Choose add, subtract, multiply, or divide."
+def perform_operation(num1, num2, operation):
+    
+    operation = operation.strip().lower()
 
-    op = operation.strip().lower()
-
-    if op == "add":
+    if operation == "add":
         return num1 + num2
-    elif op == "subtract":
+    elif operation == "subtract":
         return num1 - num2
-    elif op == "multiply":
+    elif operation == "multiply":
         return num1 * num2
-    elif op == "divide": # handle division by zero
+    elif operation == "divide":
         if num2 == 0:
-            return "Error: Division by zero"
+            return None   # special case for division by zero
         return num1 / num2
     else:
-        return "Error: Invalid operation. Choose add, subtract, multiply, or divide."
+        return None   # if operation is invalid
+
     
 def main():
     print("Arithmetic Operations")
