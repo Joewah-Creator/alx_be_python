@@ -1,13 +1,17 @@
 # programming_paradigm/bank_account.py
 
-class BankAccount: # A simple Bank Account class to demonstrate basic OOP concepts.
+class BankAccount:
+    """
+    A simple BankAccount class that supports deposit, withdraw,
+    and displaying the account balance.
+    """
 
-    def __init__(self, initial_balance=0.0): # Initialize account with an optional starting balance.
-       
-        self.__account_balance = float(initial_balance)
+    def __init__(self, initial_balance=0.0):
+        """Initialize the account with an optional initial balance."""
+        self.__account_balance = initial_balance
 
-    def deposit(self, amount): # Add the specified amount to the account balance.
-        
+    def deposit(self, amount):
+        """Deposit the specified amount into the account."""
         if amount > 0:
             self.__account_balance += amount
         else:
@@ -15,7 +19,7 @@ class BankAccount: # A simple Bank Account class to demonstrate basic OOP concep
 
     def withdraw(self, amount):
         """
-        Withdraw the specified amount from the account balance.
+        Withdraw the specified amount from the account.
         Returns True if successful, False if insufficient funds.
         """
         if amount <= 0:
@@ -26,38 +30,6 @@ class BankAccount: # A simple Bank Account class to demonstrate basic OOP concep
         self.__account_balance -= amount
         return True
 
-    def display_balance(self): # Print the current account balance.
-        
-        print(f"Current Balance: ${self.__account_balance:.0f}")
-
-# programming_paradigm/main-0.py
-
-import sys
-from bank_account import BankAccount
-
-def main():
-    account = BankAccount(100)  # Example starting balance
-
-    if len(sys.argv) < 2:
-        print("Usage: python main-0.py <command>:<amount>")
-        print("Commands: deposit, withdraw, display")
-        sys.exit(1)
-
-    command, *params = sys.argv[1].split(':')
-    amount = float(params[0]) if params else None
-
-    if command == "deposit" and amount is not None:
-        account.deposit(amount)
-        print(f"Deposited: ${int(amount)}")
-    elif command == "withdraw" and amount is not None:
-        if account.withdraw(amount):
-            print(f"Withdrew: ${int(amount)}")
-        else:
-            print("Insufficient funds.")
-    elif command == "display":
-        account.display_balance()
-    else:
-        print("Invalid command.")
-
-if __name__ == "__main__":
-    main()
+    def display_balance(self):
+        """Display the current account balance."""
+        print(f"Current Balance: ${self.__account_balance:.2f}")
